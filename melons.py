@@ -1,5 +1,6 @@
 """Classes for melon orders."""
 import random   
+from datetime import datetime
 
 
 class AbstractMelonOrder:
@@ -17,8 +18,15 @@ class AbstractMelonOrder:
         self.shipped = True
 
     def get_base_price(self):
-        base_price = random.randrange(5, 10)
-        
+        base_price = 5
+
+        now = datetime.now()
+        weekday = now.weekday()
+        hour = now.hour
+
+        if weekday < 5 and 8 < time < 11:
+            return base_price += 4
+
         return base_price
 
     def get_total(self):
@@ -69,5 +77,8 @@ class GovernmentMelonOrder(AbstractMelonOrder):
         self.passed_inspection = True
 
 
-order0 = InternationalMelonOrder("watermelon", 6, "AUS")
-print(order0.get_total())   
+# order0 = InternationalMelonOrder("watermelon", 6, "AUS")
+# print(order0.get_total())   
+print(datetime.today().weekday())
+
+print(now)
